@@ -1,0 +1,94 @@
+{%extends "glavnaya/index.html" %}
+{% block head %}
+ <link rel="stylesheet" href="static/magnific-popup.css">
+{% endblock %}
+{% block aside %}
+
+  <div class="item">
+      <a href="kursy.html" class="box small-box">
+          <div class="top-icon">
+              <i class="fa fa-clipboard" aria-hidden="true"></i>
+          </div>
+          <div class="inner-caption"><h5 class="middle text-center">Курсы Учебного центра</h5></div>
+      </a>
+  </div>
+
+  <div class="item">
+      <a href="http://webtest.uchebcentr-mf.kg" target="_blank" class="box small-box">
+          <div class="top-icon">
+              <i class="fa fa-file-text" aria-hidden="true"></i>
+          </div>
+          <div class="inner-caption"><h5 class="middle text-center">Система тестирования и сертификации</h5></div>
+      </a>
+  </div>
+
+  <div class="item">
+      <a href="http://egplms.okmot.kg/" target="_blank" class="box small-box">
+          <div class="top-icon">
+              <i class="fa fa-list-alt" aria-hidden="true"></i>
+          </div>
+          <div class="inner-caption"><h5 class="middle text-center">Информационно-образовательный портал</h5></div>
+      </a>
+  </div>
+
+{% endblock %}
+{% block content %}
+<div class="content">
+              <div class="headline"><h3>Наша команда</h3></div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="team">
+
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#tab1" role="tab" data-toggle="tab">Тренеры</a></li>
+            <li role="presentation"><a href="#tab2" role="tab" data-toggle="tab">Сотрудники</a></li>
+          </ul>
+
+
+          <div class="tab-content  popup-gallery">
+
+            <div role="tabpanel" class="tab-pane active" id="tab1">
+                 {% for status in team_tr %}
+              <div class="media">
+                <div class="media-left">
+                  <a href={{status.image}}>
+                    <img class="media-object" src={{status.image.url}} alt={{status.name|truncatewords_html:3}}>
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">{{status.name}}</h4>
+                  <p>{{status.place}}</p>
+                </div>
+              </div>
+                 {% endfor %}
+            </div> <!-- tab1 -->
+
+
+            <div role="tabpanel" class="tab-pane" id="tab2">
+               {% for status in team_so %}
+              <div class="media">
+                <div class="media-left">
+                  <a href={{status.image}}>
+                    <img class="media-object" src={{status.image.url}} alt={{status.name|truncatewords_html:3}}>
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">{{status.name}}</h4>
+                  <p>{{status.place}}</p>
+                </div>
+              </div>
+                  {% endfor %}
+            </div><!-- tab2 -->
+          </div> <!-- tab-content -->
+        </div> <!-- team -->
+
+      </div> <!-- col-md-12 -->
+   </div> <!-- row -->
+</div> <!-- content -->
+
+{% endblock %}
+{% block script %}
+<script src="static/jquery.magnific-popup.min.js"></script>
+<script src="static/js.js"></script>
+ {% endblock %}

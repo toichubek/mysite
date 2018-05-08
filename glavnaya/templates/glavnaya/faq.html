@@ -1,0 +1,54 @@
+{%extends "glavnaya/index.html" %}
+{% block head %}
+{% endblock %}
+
+{% block aside %}
+
+<div class="item">
+  <a href="faq.html" class="box small-box">
+    <div class="top-icon">
+      <i class="fa fa-clipboard" aria-hidden="true"></i>
+    </div>
+    <div class="inner-caption"><h5 class="middle text-center">Курсы Учебного центра</h5></div>
+  </a>
+</div>
+
+<div class="item">
+  <a href="http://webtest.uchebcentr-mf.kg" target="_blank" class="box small-box">
+    <div class="top-icon">
+      <i class="fa fa-file-text" aria-hidden="true"></i>
+    </div>
+    <div class="inner-caption"><h5 class="middle text-center">Система тестирования и сертификации</h5></div>
+  </a>
+</div>
+
+<div class="item">
+  <a href="http://egplms.okmot.kg/" target="_blank" class="box small-box">
+    <div class="top-icon">
+      <i class="fa fa-list-alt" aria-hidden="true"></i>
+    </div>
+    <div class="inner-caption"><h5 class="middle text-center">Информационно-образовательный портал</h5></div>
+  </a>
+</div>
+
+{% endblock %}
+{% block content %}
+<div class="content">
+
+  <div class="headline"><h3>Вопросы и ответы</h3></div>
+
+      {% for faq in faqs %}
+  <div class="faq">
+    <div><a href="" data-toggle="collapse" class="info">{{ faq.question}}</a>
+      <div id="collapse" class="collapse in">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>{{faq.answer}} <a href={{faq.url}} target="_blank">{{faq.urlname}}</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+</div>
+{% endblock %}

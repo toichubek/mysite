@@ -1,0 +1,82 @@
+{%extends "glavnaya/index.html" %}
+{% block head %}
+{% endblock %}
+
+{% block aside %}
+
+<div class="item">
+  <a href="http://webtest.uchebcentr-mf.kg" target="_blank" class="box small-box">
+    <div class="top-icon">
+      <i class="fa fa-file-text" aria-hidden="true"></i>
+    </div>
+    <div class="inner-caption"><h5 class="middle text-center">Система тестирования и сертификации</h5></div>
+  </a>
+</div>
+
+<div class="item">
+  <a href="http://egplms.okmot.kg/" target="_blank" class="box small-box">
+    <div class="top-icon">
+      <i class="fa fa-list-alt" aria-hidden="true"></i>
+    </div>
+    <div class="inner-caption"><h5 class="middle text-center">Информационно-образовательный портал</h5></div>
+  </a>
+</div>
+
+{% endblock %}
+{% block content %}
+<div class="content">
+  <div class="headline"><h3>Курсы Учебного центра Министерства финансов Кыргызской Республики</h3></div>
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="courses">
+
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#tab1" role="tab" data-toggle="tab">Очные курсы:</a></li>
+          <li role="presentation"><a href="#tab2" role="tab" data-toggle="tab">Онлайн-курсы (дистанционные):</a></li>
+        </ul>
+
+
+        <div class="tab-content  popup-gallery">
+
+          <div role="tabpanel" class="tab-pane active" id="tab1">
+            {% for kurs in kurs_off %}
+            <div class="kurs-list">
+            <a onclick="send( {{x.num}} ,  'ru')" class="arrow">{{kurs.name}}</a>
+          </div>
+            {% endfor %}
+          </div> <!-- tab1 -->
+
+
+          <div role="tabpanel" class="tab-pane" id="tab2">
+            {% for kurs in kurs_on %}
+            <div class="kurs-list">
+              <a onclick="send(XXX , 'ru')" class="arrow">{{kurs.name}}</a>
+            </div>
+            {% endfor %}
+          </div><!-- tab2 -->
+
+          <form id="form-show" action="http://uchebcentr-mf.kg/kursy/view" method="post" style="display: none">
+            <input type="hidden" name="lang" id="kursyLang" value="" required>
+            <input type="hidden" name="kursyid" id="kursyid"  required>
+            <input type="hidden" name="_token" value="39L1ss0AgkGp2iKaohGsfLBlKipeEUIbGJ0vSxEo">
+          </form>
+        </div> <!-- tab-content -->
+      </div> <!-- courses -->
+
+    </div> <!-- col-md-12 -->
+  </div> <!-- row -->
+</div> <!-- content -->
+
+{% endblock %}
+
+{% block script %}
+<script>
+    function send(id, lang){
+        console.log(id);
+        document.getElementById('kursyid').setAttribute('value', id);
+        document.getElementById('kursyLang').setAttribute('value', lang);
+        document.getElementById('form-show').submit();
+    }
+</script>
+{% endblock %}

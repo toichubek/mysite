@@ -1,0 +1,66 @@
+{%extends "glavnaya/index.html" %}
+
+ {% block bodyheader %}
+
+ {% endblock %}
+
+{% block aside %}
+
+  <div class="item">
+      <a href="kursy.html" class="box small-box">
+          <div class="top-icon">
+              <i class="fa fa-clipboard" aria-hidden="true"></i>
+          </div>
+          <div class="inner-caption"><h5 class="middle text-center">Курсы Учебного центра</h5></div>
+      </a>
+  </div>
+
+  <div class="item">
+      <a href="http://webtest.uchebcentr-mf.kg" target="_blank" class="box small-box">
+          <div class="top-icon">
+              <i class="fa fa-file-text" aria-hidden="true"></i>
+          </div>
+          <div class="inner-caption"><h5 class="middle text-center">Система тестирования и сертификации</h5></div>
+      </a>
+  </div>
+
+  <div class="item">
+      <a href="http://egplms.okmot.kg/" target="_blank" class="box small-box">
+          <div class="top-icon">
+              <i class="fa fa-list-alt" aria-hidden="true"></i>
+          </div>
+          <div class="inner-caption"><h5 class="middle text-center">Информационно-образовательный портал</h5></div>
+      </a>
+  </div>
+
+{% endblock %}
+{% block content %}
+<div class="content">
+  <div class="headline"><h3>Новости</h3></div>
+
+  {%  for i in news_all %}
+  <div class="news-item">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="news-img">
+          <a href={% url 'new' i.id %}>
+            <img src={{i.image.url}} alt={{i.title|truncatewords_html:3}}></a>
+         </div>
+        </div>
+          <div class="col-md-8">
+              <div class="news-list">
+                <h4><a href={% url 'new' i.id %} class="title-news">{{i.title}}</a></h4>
+                  <div class="news-date"><i class="fa fa-calendar" aria-hidden="true"></i>{{ i.publish_now}}</div>
+                      <div class="preview-text">
+                        <p>{{i.preview|truncatechars_html:150}}</p>
+                          </div>
+                          <div class="news-more text-right">
+                              <a href={% url 'new' i.id %}>Подробнее...</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+  {% endfor %}
+</div>
+{% endblock %}

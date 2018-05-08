@@ -1,0 +1,188 @@
+{%extends "glavnaya/index.html" %}
+
+ {% block bodyheader %}
+ <section class="main">
+     <div class="container">
+         <div class="jumbotron text-center">
+             <h2>Учебный центр</h2>
+             <h2>Министерства финансов</h2>
+             <h2>Кыргызской Республики</h2>
+             <div class="col-md-12">
+                 <div class="wrap-send">
+                     <a href="index.html#myModal" class="send" data-toggle="modal">Отправить заявку</a>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </section>
+ {% endblock %}
+
+{% block aside %}
+
+  <div class="item">
+      <a href="kursy.html" class="box small-box">
+          <div class="top-icon">
+              <i class="fa fa-clipboard" aria-hidden="true"></i>
+          </div>
+          <div class="inner-caption"><h5 class="middle text-center">Курсы Учебного центра</h5></div>
+      </a>
+  </div>
+
+  <div class="item">
+      <a href="http://webtest.uchebcentr-mf.kg" target="_blank" class="box small-box">
+          <div class="top-icon">
+              <i class="fa fa-file-text" aria-hidden="true"></i>
+          </div>
+          <div class="inner-caption"><h5 class="middle text-center">Система тестирования и сертификации</h5></div>
+      </a>
+  </div>
+
+  <div class="item">
+      <a href="http://egplms.okmot.kg/" target="_blank" class="box small-box">
+          <div class="top-icon">
+              <i class="fa fa-list-alt" aria-hidden="true"></i>
+          </div>
+          <div class="inner-caption"><h5 class="middle text-center">Информационно-образовательный портал</h5></div>
+      </a>
+  </div>
+
+  <div class="item">
+      <a href="http://minfin.kg/ru/" target="_blank" class="partners-box mf">
+          <div class="partners-caption"><h5 class="middle">Министерство финансов Кыргызской Республики</h5></div>
+      </a>
+  </div>
+  <div class="item">
+      <a href="http://zakupki.gov.kg/popp/" target="_blank" class="partners-box zakupki">
+          <div class="partners-caption"><h5 class="middle">Портал Государственных закупок</h5></div>
+      </a>
+  </div>
+  <div class="item">
+      <a href="http://ddm.kg/" target="_blank" class="partners-box ddm">
+          <div class="partners-caption"><h5 class="middle">Департамент драгоценных металлов</h5></div>
+      </a>
+  </div>
+  <div class="item">
+      <a href="http://www.discoverkyrgyzstan.org/" target="_blank" class="partners-box tourism">
+          <div class="partners-caption"><h5 class="middle">Официальный информационно-туристический сайт Кыргызской Республики</h5></div>
+      </a>
+  </div>
+
+{% endblock %}
+{% block content %}
+  <div class="content">
+    <div class="headline"><h3>Главные новости</h3></div>
+
+    {%  for i in news_all %}
+                                                        <div class="news-item">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="news-img">
+                            <a href={% url 'new' i.id %}><img src={{i.image.url }} alt={{i.title|truncatewords_html:3}}></a>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="news-list">
+                            <h4><a href={% url 'new' i.id %} class="title-news">{{i.title}}</a></h4>
+                            <div class="news-date"><i class="fa fa-calendar" aria-hidden="true"></i>{{ i.publish_now}}</div>
+                            <div class="preview-text">
+                                <p>
+                                    {{i.preview|truncatechars_html:150}}
+                                </p>
+                            </div>
+                            <div class="news-more text-right">
+                                <a href={% url 'new' i.id %}>Подробнее...</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
+
+
+    <div class="col-md-12 text-center">
+        <div class="all-news">
+            <a href="news.html">Все новости</a>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times" aria-hidden="true"></i></button>
+                <h4 class="modal-title" id="myModalLabel">Заявка на курс</h4>
+            </div>
+
+
+             <form action="https://formspree.io/ucmfkr@gmail.com" method="POST">
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="kurs">Выбор курса:</label>
+
+                        <select name="Курс" class="form-control" id="kurs">
+                            <option disabled selected>Выберите курс</option>
+                            <optgroup label="Очные курсы:">
+                                <option value="Очный курс: Управление государственными закупками товаров, работ, и услуг">Управление государственными закупками товаров, работ, и услуг</option>
+                                <option value="Очный курс: Бюджетный Кодекс: Межбюджетные отношения. Межбюджетные трансферты">Бюджетный Кодекс: Межбюджетные отношения.</option>
+                                <option value="Очный курс: Закон КР «О государственной гражданской службе и муниципальной службе»">Закон КР «О государственной гражданской службе и муниципальной службе»</option>
+                                <option value="Очный курс: 1 С: Предприятие 8.2.">1 С: Предприятие 8.2. Бухгалтерский учет для бюджетных организаций</option>
+                                <option value="Очный курс: Внутренний аудит сектора государственного управления">Внутренний аудит сектора государственного управления</option>
+                                <option value="Очный курс: Тренинги, семинары, круглые столы">Тренинги, семинары, круглые столы</option>
+                                <option value="Очный курс: Порядок функционирования Единого казначейского счета">Порядок функционирования Единого казначейского счета</option>
+                            </optgroup>
+                            <optgroup label="Онлайн-курсы (дистанционные):">
+                                <option value="Онлайн-курсы: Управление государственными закупками">Вводный курс по госзакупкам: Управление государственными закупками</option>
+                                <option value="Онлайн-курсы: Порядок функционирования Единого казначейского счета">Порядок функционирования Единого казначейского счета</option>
+                                <option value="Онлайн-курсы: Программное бюджетирование">Программное бюджетирование</option>
+                                <option value="Онлайн-курсы: Формирование и исполнение местных бюджетов">Формирование и исполнение местных бюджетов</option>
+                                <option value="Онлайн-курсы: Подготовка проектов на получение стимулирующих грантов">Подготовка проектов на получение стимулирующих грантов</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Ваше имя:</label>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
+                            <input type="text" id="name" class="form-control" name="Имя" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tel">Телефон:</label>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon2"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                            <input type="tel" id="tel" class="form-control" name="Телефон"  required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mail">E-mail:</label>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon3"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                            <input type="email" id="mail" class="form-control" name="E-mail" required>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+					<input type="submit" class="btn send" value="Отправить">
+                </div>
+
+                     	 <input type="hidden" name="_next" value="http://uchebcentr-mf.kg/ru/index.html" />
+                        <input type="hidden" name="_language" value="ru" />
+                        <input type="hidden" name="_subject" value="Новая заявка c сайта! ru" />
+                        <input type="text" name="_gotcha" style="display:none" />
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
